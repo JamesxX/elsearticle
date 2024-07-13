@@ -4,6 +4,8 @@
 // License: MIT
 // Date : 07/2024
 
+#import "components/appendix.typ": isappendix, appendix
+
 #let font-size = (
   script: 7pt,
   footnote: 8pt,
@@ -28,8 +30,6 @@
   five_p: (left: 37pt, right: 37pt, top: 80pt, bottom: 80pt)
 )
 
-#let isappendix = state("isappendix", false)
-
 // Equations
 #let nonumeq = math.equation.with(numbering: none)
 
@@ -39,32 +39,6 @@
   supplement: [],
   numbering: "(a)",
 )
-
-// Appendix
-#let appendix(body) = {
-  set heading(numbering: "A.1.")
-  // Reset heading counter
-  counter(heading).update(0)
-
-  // Equation numbering
-  let numbering-eq = n => {
-    let h1 = counter(heading).get().first()
-    numbering("(A.1)", h1, n)
-  }
-  set math.equation(numbering: numbering-eq)
-
-  // Figure and Table numbering
-  let numbering-fig = n => {
-    let h1 = counter(heading).get().first()
-    numbering("A.1", h1, n)
-  }
-  show figure.where(kind: image): set figure(numbering: numbering-fig)
-  show figure.where(kind: table): set figure(numbering: numbering-fig)
-
-  isappendix.update(true)
-
-  body
-}
 
 #let elsearticle(
   // The article's title.
