@@ -31,10 +31,7 @@
 #let isappendix = state("isappendix", false)
 
 // Equations
-#let nonumeq(body) = {
-  set math.equation(numbering: none)
-  body
-}
+#let nonumeq = math.equation.with(numbering: none)
 
 // Figures
 #let subfigure = figure.with(
