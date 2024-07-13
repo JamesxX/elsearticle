@@ -35,9 +35,9 @@
 
 // Figures
 #let subfigure = figure.with(
-    kind: "subfigure",
-    supplement: [],
-    numbering: "(a)",
+  kind: "subfigure",
+  supplement: [],
+  numbering: "(a)",
 )
 
 // Appendix
